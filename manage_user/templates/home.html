@@ -1,0 +1,24 @@
+<h2>User List</h2>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Choice</th>
+        <th>Actions</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.userprofile.choice }}</td>
+        <td>
+            <a href="{% url 'manage_user:edit_user' user.id %}">Edit</a> |
+            <a href="{% url 'manage_user:delete_user' user.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'manage_user:add_user' %}">Add User</a>
+<a href="{% url 'manage_user:logout_user' %}">Logout</a>

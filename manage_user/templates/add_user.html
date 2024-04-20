@@ -1,0 +1,9 @@
+{% block content %}
+  <h2>Create New User</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{{ button_text }}</button>
+  </form>
+  <a href="{% url 'manage_user:home' %}">Retour</a>
+{% endblock %}
