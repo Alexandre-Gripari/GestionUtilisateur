@@ -18,5 +18,7 @@ De base il y a 5 utilisateur par default :
   - username : admins, mot de passe : admin
   - username : admin4, mot de passe : admin
   - username : adminsa, mot de passe : admin
+
+Pour lancer le server : python manage.py runserver (par default sur http://localhost:8000/) 
     
   
