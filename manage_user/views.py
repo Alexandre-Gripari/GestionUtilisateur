@@ -17,7 +17,7 @@ def edit_user(request, user_id):
             user = form.save()
             return redirect('manage_user:home')
     else:
-        form = RegistrationForm(instance=user.user)
+        form = RegistrationForm(instance=user.user, initial={'databases':user.databases.all()})
     return render(request, 'add_user.html', {'form': form, 'user': user, 'button_text': 'Edit', 'form_title': 'Edit User'})
 
 def delete_user(request, user_id):

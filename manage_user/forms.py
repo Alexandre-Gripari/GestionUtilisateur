@@ -27,7 +27,7 @@ class RegistrationForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
-            custom_user = UserProfile(user=user)
-            custom_user.save()
-            custom_user.databases.set(self.cleaned_data['databases'])
+            userProfile = UserProfile(user=user)
+            userProfile.save()
+            userProfile.databases.set(self.cleaned_data['databases'])
         return user
