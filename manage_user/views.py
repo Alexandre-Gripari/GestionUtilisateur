@@ -1,21 +1,9 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from .forms import RegistrationForm
 from login.models import UserProfile
 from django.contrib.auth.models import User
 
-
-def register(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            UserProfile.objects.create(user=user, choice=request.POST['choice'])
-            login(request, user)
-            return redirect('home')
-    else:
-        form = RegistrationForm()
-    return render(request, 'register.html', {'form': form})
 
 def home(request):
     users = User.objects.all()
@@ -27,9 +15,6 @@ def edit_user(request, user_id):
         form = RegistrationForm(request.POST, instance=user.user)
         if form.is_valid():
             user = form.save()
-            user_profile = UserProfile.objects.get(user=user)
-            user_profile.choice = request.POST['choice']
-            user_profile.save()
             return redirect('manage_user:home')
     else:
         form = RegistrationForm(instance=user.user)
@@ -41,6 +26,7 @@ def delete_user(request, user_id):
     return redirect('manage_user:home')
 
 def logout_user(request):
+    logout(request)
     return redirect('login')
 
 def add_user(request):
@@ -48,7 +34,6 @@ def add_user(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            UserProfile.objects.create(user=user, choice=request.POST['choice'])
             return redirect('manage_user:home')
     else:
         form = RegistrationForm()
