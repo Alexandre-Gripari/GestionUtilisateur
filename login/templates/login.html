@@ -1,9 +1,16 @@
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    <label for="username">Username:</label>
-    <input id="username" type="text" name="username">
-    <label for="password">Password:</label>
-    <input id="password" type="password" name="password">
-    <button type="submit">Login</button>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input id="username" type="text" name="username">
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password">
+        <button type="submit">Login</button>
+    </form>
+{% endblock %}

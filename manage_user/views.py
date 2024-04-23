@@ -18,7 +18,7 @@ def edit_user(request, user_id):
             return redirect('manage_user:home')
     else:
         form = RegistrationForm(instance=user.user)
-    return render(request, 'add_user.html', {'form': form, 'user': user, 'button_text': 'Edit'})
+    return render(request, 'add_user.html', {'form': form, 'user': user, 'button_text': 'Edit', 'form_title': 'Edit User'})
 
 def delete_user(request, user_id):
     users = UserProfile.objects.get(user_id=user_id)
@@ -37,6 +37,6 @@ def add_user(request):
             return redirect('manage_user:home')
     else:
         form = RegistrationForm()
-    return render(request, 'add_user.html', {'form': form, 'button_text': 'Add'})
+    return render(request, 'add_user.html', {'form': form, 'button_text': 'Add', 'form_title': 'Add User'})
 
 
